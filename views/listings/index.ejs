@@ -1,0 +1,106 @@
+<% layout("/layouts/boilerplate") %>
+    <div id="filters">
+        <div class="filter">
+            <a href="/listings">
+                <div><i class="fa-solid fa-fire"></i></div>
+                <p>Trending</p>
+            </a>
+        </div>
+        <div class="filter">
+            <a href="/listings">
+                <div><i class="fa-solid fa-bed"></i></div>
+                <p>Rooms</p>
+            </a>
+        </div>
+        <div class="filter">
+            <a href="">
+                <div>
+                <i class="fa-solid fa-mountain-city"></i>
+            </div>
+            <p>Iconic cities</p>
+            </a>
+        </div>
+        <div class="filter">
+            <a href="">
+                <div>
+                <i class="fa-solid fa-money-bills"></i>
+            </div>
+            <p>Luxury Stays</p>
+            </a>
+        </div>
+        <div class="filter">
+            <a href="">
+                <div>
+                <i class="fa-solid fa-wheat-awn"></i>
+            </div>
+            <p>Farms</p>
+            </a>
+        </div>
+        <div class="filter">
+            <a href="">
+                <div>
+                <i class="fa-solid fa-person-swimming"></i>
+            </div>
+            <p>Pools</p>
+            </a>
+        </div>
+        <div class="filter">
+            <a href="">
+                <div>
+                <i class="fa-solid fa-hotel"></i>
+            </div>
+            <p>Resorts</p>
+            </a>
+        </div>
+        <div class="filter">
+           <a href="">
+             <div>
+                <i class="fa-solid fa-campground"></i>
+            </div>
+            <p>Camping</p>
+           </a>
+        </div>
+        <div class="filter">
+            <a href="">
+                <div>
+                <i class="fa-solid fa-mountain-sun"></i>
+            </div>
+            <p>Mountain view</p>
+            </a>
+        </div>
+        <div class="filter">
+           <a href="">
+             <div>
+                <i class="fa-solid fa-umbrella-beach"></i>
+            </div>
+            <p>Beach</p>
+           </a>
+        </div>
+        <div class="tax-toggle">
+            <div class="form-check-reverse form-switch">
+                <input class="form-check-input toggle-switch" type="checkbox" role="switch" id="switchCheckDefault">
+                <label class="form-check-label" for="switchCheckDefault">Display including taxes</label>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+        <%for(let listing of allListings){%>
+            <a href="/listings/<%=listing._id%>" class="listing-link">
+                <div class="card listing-card col" data-title="<%=listing.title.toLowerCase()%>">
+                    <img src="<%=listing.image.url%>" class="card-img-top" alt="listing-image" style="height: 20rem">
+                    <div class="card-img-overlay"></div>
+                    <div class="card-body">
+                        <h5 class="card-title"><b><%=listing.title%></b></h5>
+                        <p class="card-text">&#36 <%=listing.price%> / night <i class="tax-info">+ 18% TAX</i></p>
+                    </div>
+                </div>
+            </a>
+        <%}%>
+    </div>
+<script>
+  const allListings = [
+    <% allListings.forEach(listing => { %>
+      { title: "<%= listing.title %>", id: "<%= listing._id %>" },
+    <% }); %>
+  ];
+</script>

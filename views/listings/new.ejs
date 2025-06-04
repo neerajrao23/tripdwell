@@ -1,0 +1,44 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <h3>Host On TripDwell</h3>
+        <br>
+        <form action="/listings" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" name="listing[title]" placeholder="enter title" class="form-control form-inp" required>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description:</label>
+                <textarea type="text" name="listing[description]" placeholder="enter description" class="form-control form-inp" required></textarea>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please add a short description</div>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Image:</label>
+                <input type="file" name="listing[image]" placeholder="enter image URL/Link" class="form-control form-inp" required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price:</label>
+                <input  name="listing[price]" placeholder="enter price" class="form-control form-inp" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Invalid Price</div>
+            </div>
+            <div class="mb-3">
+                <label for="country" class="form-label">Country:</label>
+                <input type="text" name="listing[country]" placeholder="enter country" class="form-control form-inp" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Invalid Country </div>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location:</label>
+                <input type="text" name="listing[location]" placeholder="enter location" class="form-control form-inp" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Invalid Location</div>
+            </div>
+            <button class="btn form-btn mb-3 mt-3">Add</button>
+            <br>
+        </form>
+    </div>
+</div>
