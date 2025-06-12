@@ -29,11 +29,15 @@ module.exports.createListing = async (req, res, next) => {
     const location = req.body.listing.location;
     let geoData;
     try {
-        const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`, {
-            headers: {
-                'User-Agent': 'TripDwellApp/1.0 (neerajrao2308@gmail.com)'
-            }
-        });
+        // const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`, {
+        //     headers: {
+        //         'User-Agent': 'TripDwellApp/1.0 (neerajrao2308@gmail.com)'
+        //     }
+        // });
+        const apiKey = process.env.LOCATIONIQ_KEY;
+        // const geoResponse = await fetch(`https://us1.locationiq.com/v1/search?key=${apiKey}&q=${encodeURIComponent(location)}&format=json`);
+        const geoResponse = await fetch(`https://us1.locationiq.com/v1/search?key=${apiKey}&q=${encodeURIComponent(location)}&format=json`);
+
         console.log("Geo response status:", geoResponse.status);
         if (!geoResponse.ok) {
             throw new Error("Geocoding service error");
