@@ -27,10 +27,21 @@ module.exports.createListing = async (req, res, next) => {
     newListing.image = {url, filename};
 
     const location = req.body.listing.location;
-    const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`);
-    const geoData = await geoResponse.json();
+    let geoData;
+    try {
+        const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`);
+        if (!geoResponse.ok) {
+            throw new Error("Geocoding service error");
+        }
+        geoData = await geoResponse.json();
+    } catch (err) {
+        console.error("Geocoding failed:", err);
+        req.flash("error", "Could not fetch location data. Try again.");
+        return res.redirect("/listings/new");
+    }
+    
 
-    if (geoData.length === 0) {
+    if (!geoData || geoData.length === 0) {
         req.flash("error", "Location not found");
         return res.redirect("/listings/new");
     }
