@@ -34,6 +34,7 @@ module.exports.createListing = async (req, res, next) => {
                 'User-Agent': 'TripDwellApp/1.0 (neerajrao2308@gmail.com)'
             }
         });
+        console.log("Geo response status:", geoResponse.status);
         if (!geoResponse.ok) {
             throw new Error("Geocoding service error");
         }
