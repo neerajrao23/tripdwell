@@ -29,14 +29,18 @@ module.exports.createListing = async (req, res, next) => {
     const location = req.body.listing.location;
     let geoData;
     try {
-        const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`);
+        const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`, {
+            headers: {
+                'User-Agent': 'TripDwellApp/1.0 (neerajrao2308@gmail.com)'
+            }
+        });
         if (!geoResponse.ok) {
             throw new Error("Geocoding service error");
         }
         geoData = await geoResponse.json();
     } catch (err) {
         console.error("Geocoding failed:", err);
-        req.flash("error", "Could not fetch location data. Try again.");
+        req.flash("error", "Could not fetch location data due to api error or reached the free tier limit of api requests for maps. Try again later.");
         return res.redirect("/listings/new");
     }
     
