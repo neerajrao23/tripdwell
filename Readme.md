@@ -42,6 +42,14 @@
 
 ---
 
+## 🚀 Future Enhancements
+
+- 📱 **Improve mobile responsiveness** – Ensure the layout adapts seamlessly across all devices.
+
+- 🔍 **Add advanced filters for listings** : Allow filtering by price, rating, and location for better search results.
+
+---
+
 ## 🙋‍♂️ About Me
 
 **Neeraj Rao** – Passionate MERN stack developer  
